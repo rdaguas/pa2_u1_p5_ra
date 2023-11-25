@@ -5,13 +5,18 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uce.edu.transferencia.repository.ICuentaBancariaRepository;
 import com.uce.edu.transferencia.repository.ITransferenciaRepository;
+import com.uce.edu.transferencia.repository.modelo.CuentaBancaria;
 import com.uce.edu.transferencia.repository.modelo.Transferencia;
 @Service
 public class TransferenciaServiceImpl implements ITransferenciaService {
 
 	@Autowired
-	 private ITransferenciaRepository iTransferenciaRepository;
+	private ITransferenciaRepository iTransferenciaRepository;
+	
+	@Autowired
+	private ICuentaBancariaRepository iCuentaBancariaRepository;
 	
 	@Override
 	public Transferencia buscar(String numero) {
@@ -41,7 +46,19 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 	@Override
 	public void realizar(String numeroOrigen, String numeroDestino, BigDecimal monto) {
 		// TODO Auto-generated method stub
+		//1. Buscar Cta Origen
+		CuentaBancaria ctaOrigen = this.iCuentaBancariaRepository.seleccionar(numeroOrigen);
+		//2. Consultar el saldo
+		//3. Validar el saldo
+		//4. Restar el monto
+		//5. Actualizar Cta Origen
 		
+		//6. Buscar Cta Destino
+		//7. Consultar saldo
+		//8. Sumar el saldo
+		//9. Actualizar Cta Destino
+		
+		//10. Crear la transferencia 
 	}
 
 }
