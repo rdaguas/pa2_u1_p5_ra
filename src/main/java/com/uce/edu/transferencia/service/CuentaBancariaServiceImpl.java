@@ -1,10 +1,11 @@
 package com.uce.edu.transferencia.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.uce.edu.transferencia.repository.ICuentaBancariaRepository;
 import com.uce.edu.transferencia.repository.modelo.CuentaBancaria;
-
+@Service
 public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 
 	@Autowired

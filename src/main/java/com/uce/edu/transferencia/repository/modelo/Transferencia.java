@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
-@Component
+//@Component
 public class Transferencia {
 	
 	private String numero;
@@ -45,6 +45,11 @@ public class Transferencia {
 	}
 	public void setCuentaDestino(CuentaBancaria cuentaDestino) {
 		this.cuentaDestino = cuentaDestino;
+	}
+	@Override
+	public String toString() {
+		return "Transferencia [numero=" + numero + ", fecha=" + fecha + ", monto=" + monto + ", cuentaOrigen="
+				+ cuentaOrigen + ", cuentaDestino=" + cuentaDestino + "]";
 	}
 	
 

@@ -1,6 +1,7 @@
 package com.uce.edu.transferencia.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,16 +50,50 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		//1. Buscar Cta Origen
 		CuentaBancaria ctaOrigen = this.iCuentaBancariaRepository.seleccionar(numeroOrigen);
 		//2. Consultar el saldo
+		BigDecimal saldoOrigen = ctaOrigen.getSaldo();
 		//3. Validar el saldo
+		if(saldoOrigen.compareTo(monto) >= 0) {
+			
 		//4. Restar el monto
+			
+			BigDecimal nuevoSaldoOrigen = saldoOrigen.subtract(monto);
+			
 		//5. Actualizar Cta Origen
 		
+			ctaOrigen.setSaldo(nuevoSaldoOrigen);
+			this.iCuentaBancariaRepository.actualizar(ctaOrigen);
+			
 		//6. Buscar Cta Destino
+			
+			CuentaBancaria ctaDestino = this.iCuentaBancariaRepository.seleccionar(numeroDestino);
+			
 		//7. Consultar saldo
+			
+			BigDecimal saldoDestino = ctaDestino.getSaldo();
+			
 		//8. Sumar el saldo
+			
+			BigDecimal nuevoSaldoDestino = saldoDestino.add(monto);
+			
 		//9. Actualizar Cta Destino
 		
-		//10. Crear la transferencia 
+			ctaDestino.setSaldo(nuevoSaldoDestino);
+			this.iCuentaBancariaRepository.actualizar(ctaDestino);
+			
+		//10. Crear la transferencia
+			
+			Transferencia transferencia = new Transferencia();
+			transferencia.setCuentaOrigen(ctaOrigen);
+			transferencia.setCuentaDestino(ctaDestino);
+			transferencia.setFecha(LocalDateTime.now());
+			transferencia.setMonto(monto);
+			transferencia.setNumero("123123123");
+			
+			this.iTransferenciaRepository.insertar(transferencia);
+			System.out.println("Transferencia Realizada con exito! ");
+		}else {
+			System.out.println("Saldo no Disponible");
+		}
 	}
 
 }
