@@ -39,6 +39,11 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository {
 		Transferencia transfer = this.seleccionar(numero);
 		base.remove(transfer);
 	}
+	@Override
+	public List<Transferencia> reporteTodos() {
+		// TODO Auto-generated method stub
+		return base;
+	}
 
 
 
