@@ -21,7 +21,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 	@Autowired
 	private ICuentaBancariaRepository iCuentaBancariaRepository;
 
-	 private static int contadorTransacciones = 0;
+	// private static int contadorTransacciones = 0;
 	@Override
 	public Transferencia buscar(String numero) {
 		// TODO Auto-generated method stub
@@ -94,8 +94,8 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 			transferencia.setMonto(monto);
 			transferencia.setNumero("123123123");
 			this.iTransferenciaRepository.insertar(transferencia);
-			 contadorTransacciones++;
-			System.out.println("Transferencia Realizada con exito! " + "-----"+" Número de Transacción: " + contadorTransacciones);
+			// contadorTransacciones++;
+			System.out.println("Transferencia Realizada con exito! ");
 		} else {
 			System.out.println("Saldo no Disponible");
 		}
